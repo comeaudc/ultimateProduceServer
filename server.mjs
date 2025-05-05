@@ -1,9 +1,10 @@
 // Imports
-import express from 'express';
-import dotenv from 'dotenv';
-import { globalError } from './middleware/errorMiddleware.mjs';
-import connectDB from './db/conn.mjs';
-import produceRoutes from './routes/produceRoutes.mjs';
+import express from "express";
+import dotenv from "dotenv";
+import { globalError } from "./middleware/errorMiddleware.mjs";
+import connectDB from "./db/conn.mjs";
+import produceRoutes from "./routes/produceRoutes.mjs";
+import cors from "cors";
 
 // Setups
 dotenv.config();
@@ -13,9 +14,10 @@ connectDB();
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
 // Routes
-app.use('/api/produce', produceRoutes);
+app.use("/api/produce", produceRoutes);
 
 // ErrMiddleware
 app.use(globalError);
